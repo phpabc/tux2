@@ -178,17 +178,15 @@ $range = 5; // 分页数设置
 $showitems = ($range * 2)+1;
 $pages = ceil($total_posts/$posts_per_page);
 if(1 != $pages){
-	echo "<div class='pagination'>";
-	echo ($paged > 2 && $paged+$range+1 > $pages && $showitems < $pages)? "<a href='".get_pagenum_link(1)."' class='fir_las'>最前</a>":"";
-	echo ($paged > 1 && $showitems < $pages)? "<a href='".get_pagenum_link($prev)."' class='page_previous'>« 上一页</a>":"";		
+	echo "<ul class='pagination'>";
+	echo ($paged > 1 && $showitems < $pages)? "<li class='pre_nxt'><a href='".get_pagenum_link($prev)."' class='page_previous'> « </a></li>":"";		
 	for ($i=1; $i <= $pages; $i++){
 	if (1 != $pages &&( !($i >= $paged+$range+1 || $i <= $paged-$range-1) || $pages <= $showitems )){
-	echo ($paged == $i)? "<span class='current'>".$i."</span>":"<a href='".get_pagenum_link($i)."' class='inactive' >".$i."</a>"; 
+	echo ($paged == $i)? "<li class='active'><span class='current'>".$i."</span></li>":"<li><a href='".get_pagenum_link($i)."' class='inactive' >".$i."</a></li>"; 
 	}
 	}
-	echo ($paged < $pages && $showitems < $pages) ? "<a href='".get_pagenum_link($next)."' class='page_next'>下一页 »</a>" :"";
-	echo ($paged < $pages-1 &&  $paged+$range-1 < $pages && $showitems < $pages) ? "<a href='".get_pagenum_link($pages)."' class='fir_las'>最后</a>":"";
-	echo "</div>\n";
+	echo ($paged < $pages && $showitems < $pages) ? "<li class='pre_nxt'><a href='".get_pagenum_link($next)."' class='page_next'> » </a></li>" :"";
+	echo "</ul>\n";
 	}
 }
 
@@ -201,7 +199,7 @@ function colorCloudCallback($matches) {
  $text = $matches[1];
  $colors = array('428BCA','D9534F','567E95','4A4A4A','6E8B3D','B37333','B433FF','5CB85C');  
  $color=$colors[dechex(rand(0,7))];  $pattern = '/style=(\'|\")(.*)(\'|\")/i';
- $text = preg_replace($pattern, "style=\"color:#{$color};$2;border: 1px solid #{$color};padding: 4px 6px;-moz-border-radius: 3px;-webkit-border-radius: 3px;border-radius: 3px;margin-right:4px;\"", $text);
+ $text = preg_replace($pattern, "style=\"color:#{$color};$2;border: 1px solid #{$color};\"", $text);
  return "<a $text>";
 }
 add_filter('wp_tag_cloud', 'colorCloud', 1);
@@ -209,10 +207,10 @@ add_filter('wp_tag_cloud', 'colorCloud', 1);
 add_filter( 'widget_tag_cloud_args', 'theme_tag_cloud_args' );
 function theme_tag_cloud_args( $args ){
 	$newargs = array(
-		'smallest'    => 14,  //最小字号
-		'largest'     => 14, //最大字号
-		'unit'        => 'px',   //字号单位，可以是pt、px、em或%
-		'number'      => 26,     //显示个数
+		'smallest'    => 0.8,  //最小字号
+		'largest'     => 0.8, //最大字号
+		'unit'        => 'em',   //字号单位，可以是pt、px、em或%
+		'number'      => 27,     //显示个数
 		'format'      => 'flat',//列表格式，可以是flat、list或array
 		'separator'   => "\n",   //分隔每一项的分隔符
 		'orderby'     => 'count',//排序字段，可以是name或count

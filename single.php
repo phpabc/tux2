@@ -2,24 +2,23 @@
 	<div id="main">
 		<?php while ( have_posts() ) : the_post(); ?>
 		<div id="article">
-			<h1><a href="<?php the_permalink() ?>" title="<?php the_title(); ?>"><?php the_title(); ?></a></h1>
+			<header><h1><a href="<?php the_permalink() ?>" title="<?php the_title(); ?>"><?php the_title(); ?></a></h1>
 			<div class="info">
 				<span class="meat_span"><i class="iconfont">&#xe629;</i><?php the_author() ?></span>
 			    <span class="meat_span"><i class="iconfont">&#xe625;</i><?php the_category(', ') ?></span>
-				<span class="meat_span"><i class="iconfont">&#xe62a;</i><?php the_time('Y-m-d'); ?></span>
+				<time class="meat_span"><i class="iconfont">&#xe62a;</i><?php the_time('Y-m-d'); ?></time>
 				<span class="meat_span"><i class="iconfont">&#xe61f;</i><?php post_views(' ', ' 次浏览'); ?></span>					
                 <span class="meat_span meat_max"><i class="iconfont">&#xe62e;</i><?php the_tags('', ', ', ''); ?></span>
                 <span class="meat_span meat_max"><i class="iconfont">&#xe618;</i><?php comments_popup_link ('没有评论','1条评论','%条评论'); ?></span>
                 <?php edit_post_link('编辑', '<span class="meat_span">', '</span>'); ?>
-            </div>
-			<div class="text"><?php the_content(); ?></div>
+            </div></header>
+			<article class="text"><?php the_content(); ?></article>
            <?php if (get_option('tux_content_ad')) { ?>
                 <div class="content_adsense"><?php echo stripslashes(get_option('tux_content_adcode')); ?></div>
 		   <?php } ?>			
 			
 			<!--相关文章开始-->
 <div class="related">
-<h3>和本文关系暧昧的</h3>
 <ul>
 <?php
 global $post, $wpdb;
@@ -43,8 +42,8 @@ if ($post_tags) {
         AND term_id IN (" . $tag_list . ")
         AND ID != '" . $post->ID . "'
         ORDER BY RAND()
-        LIMIT 5");
-        // 以上代码中的 5 为限制只获取8篇相关文章
+        LIMIT 3");
+        // 以上代码中的 5 为限制只获取5篇相关文章
         // 通过修改数字 5，可修改你想要的文章数量
 
     if ( $related_posts ) {
@@ -54,25 +53,25 @@ if ($post_tags) {
 <?php   }
     }
     else {
-      echo '<li>暂无相关文章</li>';
+      echo '';
     }
 }
 else {
-  echo '<li>暂无相关文章</li>';
+  echo '';
 }
 ?>
 </ul>
 </div>
 <!--相关文章结束-->
-            <div class="text_add">
+            <footer class="text_add">
                 <div class="share"><?php echo stripslashes(get_option('tux_share')); ?></div>
-            </div>
+            </footer>
 		</div>
 		<?php endwhile; ?>
-        <div class="post_link">
+        <nav class="post_link">
 			<div class="prev"><?php previous_post_link('上一篇：%link') ?></div>
 			<div class="next"><?php next_post_link('下一篇：%link') ?></div>
-        </div>
+        </nav>
         
         <div id="comments"><?php comments_template(); ?></div>
 	</div>
