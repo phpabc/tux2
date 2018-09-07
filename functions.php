@@ -37,7 +37,7 @@ add_action( 'widgets_init', 'tux_widgets_init' );
 
 if ( ! function_exists( 'tux_content_nav' ) ) :
 
-register_nav_menus(array('header-menu' => __( 'Simple Tux导航菜单' ),));
+register_nav_menus(array('header-menu' => __( 'Simple Tux Final 导航菜单' ),));
 
 
 //文章浏览次数统计
@@ -199,7 +199,7 @@ function colorCloudCallback($matches) {
  $text = $matches[1];
  $colors = array('428BCA','D9534F','567E95','4A4A4A','6E8B3D','B37333','B433FF','5CB85C');  
  $color=$colors[dechex(rand(0,7))];  $pattern = '/style=(\'|\")(.*)(\'|\")/i';
- $text = preg_replace($pattern, "style=\"color:#{$color};$2;border: 1px solid #{$color};\"", $text);
+ $text = preg_replace($pattern, "style=\"color:#{$color};border: 1px solid #{$color};\"", $text);
  return "<a $text>";
 }
 add_filter('wp_tag_cloud', 'colorCloud', 1);

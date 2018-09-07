@@ -392,8 +392,8 @@ function tux_add_theme_options_page() {
             die;
         }
     }
-    add_theme_page('Simple Tux 主题选项', 'Simple Tux 主题选项', 'edit_theme_options', basename(__FILE__) , 'tux_options_page');
-}
+    add_theme_page('Simple Tux Final 主题选项', 'Simple Tux Final 主题选项', 'edit_theme_options', basename(__FILE__) , 'tux_options_page');
+} 
 add_action('admin_menu', 'tux_add_theme_options_page');
 
 function tux_options_page() {
@@ -404,9 +404,9 @@ function tux_options_page() {
 ?>
 
 <div class="wrap">
-    <h2>Simple Tux 主题选项</h2>
-	<p>主题作者：<a href="http://www.phpabc.cn/" target="_blank">PHPABC</a> ¦ 当前版本：V1.2</br>
-	主题介绍、使用帮助及升级请访问：<a href="http://www.phpabc.cn/simple-tux.html" title="TUX" target="_blank">http://www.phpabc.cn/simple-tux.html</a>
+    <h2>Simple Tux Final 主题选项</h2>
+	<p>主题作者：<a href="http://www.phpabc.cn/" target="_blank">PHPABC</a> ¦ 当前版本：Final V1.0 </br>
+	主题介绍、使用帮助及升级请访问 ：<a href="http://www.phpabc.cn/simple-tux.html" title="TUX" target="_blank">http://www.phpabc.cn/simple-tux.html</a>
 	</p>
     <input placeholder="搜索主题选项…" type="search" id="theme-options-search" />
     <form method="post">
@@ -638,7 +638,7 @@ function tux_pointer_print_scripts() {
     jQuery(document).ready(function($) {
         var $menuAppearance = $("#menu-appearance");
         $menuAppearance.pointer({
-            content: '<h3>恭喜，您的主题安装成功！</h3><p>Simple Tux主题支持选项，请访问<a href="themes.php?page=theme-options.php">主题选项</a>页面进行配置。</p>',
+            content: '<h3>恭喜，您的主题安装成功！</h3><p>Simple Tux Final 主题支持选项，请访问<a href="themes.php?page=theme-options.php">主题选项</a>页面进行配置。</p>',
             position: {
                 edge: "left",
                 align: "center"
